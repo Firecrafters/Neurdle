@@ -1,12 +1,10 @@
+import answerList from "./answers";
+
 const FLIP_MS = 600;
 const STAGGER_MS = 240;
 const MAX_ROWS = 6;
 
-const answerList: string[] = [
-    "NEURO",
-    "VEDAL",
-    "EVIL"
-]
+
 var rand = Math.floor(Math.random() * answerList.length);
 const ANSWER = answerList[rand] || "ERROR";
 if (!ANSWER) console.error("An error occured while getting the answer.");
