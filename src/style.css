@@ -362,3 +362,19 @@ main {
         margin-top: 0.5rem;
     }
 }
+
+#github-link {
+    position: fixed;
+    bottom: 10px;
+    left: 10px;
+
+    img {
+        transition: all 0.3s ease;
+        width: 40px;
+        opacity: 0.5;
+
+        &:hover {
+            opacity: 1;
+        }
+    }
+}
