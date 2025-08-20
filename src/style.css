@@ -269,7 +269,7 @@ main {
     border: 1px solid #21262d;
 }
 
-.copy-button {
+.copy-button, .restart-button {
     background: var(--correct);
     color: white;
     border: none;

@@ -1,11 +1,7 @@
+import answerList from "./answers.js";
 const FLIP_MS = 600;
 const STAGGER_MS = 240;
 const MAX_ROWS = 6;
-const answerList = [
-    "NEURO",
-    "VEDAL",
-    "EVIL"
-];
 var rand = Math.floor(Math.random() * answerList.length);
 const ANSWER = answerList[rand] || "ERROR";
 if (!ANSWER)
@@ -17,7 +13,6 @@ board.style.aspectRatio = `${WORD_LEN} / ${MAX_ROWS}`;
 board.style.gridTemplateRows = `repeat(${MAX_ROWS}, 1fr)`;
 board.style.gridTemplateColumns = `repeat(${WORD_LEN}, 1fr)`;
 const toast = document.getElementById("toast");
-const gameContainer = document.getElementById("game-container");
 const finishScreen = document.getElementById("finish-screen");
 const finishTitle = document.getElementById("finish-title");
 const shareGrid = document.getElementById("share-grid");

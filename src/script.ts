@@ -1,4 +1,4 @@
-import answerList from "./answers";
+import answerList from "./answers.js";
 
 const FLIP_MS = 600;
 const STAGGER_MS = 240;
@@ -19,7 +19,6 @@ board.style.gridTemplateColumns = `repeat(${WORD_LEN}, 1fr)`;
 
 
 const toast: HTMLElement = document.getElementById("toast") as HTMLElement;
-const gameContainer: HTMLElement = document.getElementById("game-container") as HTMLElement;
 const finishScreen: HTMLElement = document.getElementById("finish-screen") as HTMLElement;
 const finishTitle: HTMLElement = document.getElementById("finish-title") as HTMLElement;
 const shareGrid: HTMLElement = document.getElementById("share-grid") as HTMLElement;
@@ -200,7 +199,7 @@ function generateShareText() {
         "absent": "⬛"
     };
 
-    let shareText = `: ${state.win ? state.row + 1 : "X"}/${MAX_ROWS}\n\n`;
+    let shareText = `https://Firecrafter28.github.io/Neurdle: ${state.win ? state.row + 1 : "X"}/${MAX_ROWS}\n\n`;
 
     for (let r = 0; r <= (state.win ? state.row : MAX_ROWS - 1); r++) {
         for (let c = 0; c < WORD_LEN; c++) {
