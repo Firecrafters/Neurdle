@@ -284,10 +284,11 @@ function showFinishScreen() {
     const boardContainer: HTMLElement = document.getElementById("board-container") as HTMLElement;
     const keyboard: HTMLElement = document.getElementById("keyboard") as HTMLElement;
 
-    setTimeout(() => {
-        boardContainer.style.visibility = "hidden";
-        keyboard.style.visibility = "hidden";
-    }, 100)
+    if (boardContainer && keyboard) {
+        boardContainer.classList.add("hidden");
+        keyboard.classList.add("hidden");
+    }
+
 }
 
 function handleKey(ch: string) {

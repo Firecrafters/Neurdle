@@ -40,6 +40,10 @@ body {
     overflow-x: visible;
 }
 
+.hidden {
+    opacity: 0 !important;
+}
+
 .wrap {
     min-height: 100vh;
     display: flex;
@@ -282,7 +286,7 @@ main {
 
 .share-grid {
     font-family: var(--monospace);
-    font-size: clamp(1.2rem, 3vw, 1.5rem);
+    font-size: clamp(1.2rem, 3vw, 1.3rem);
     line-height: 1.2;
     margin: 1rem 0;
     white-space: pre-line;
@@ -350,7 +354,9 @@ main {
     .keyboard {
         padding: 0.5rem;
     }
-}@media (max-height: 600px) {
+}
+
+@media (max-height: 600px) {
     main {
         min-height: auto;
         justify-content: flex-start;
