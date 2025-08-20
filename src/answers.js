@@ -25,7 +25,13 @@ const answerList = [
     "CERBER",
     "HEART",
     "BACKSLASH",
-    "ANNY"
+    "ANNY",
+    "BANANARUM",
+    "VEDALAI",
+    "GIGANEURO",
+    "GIGAEVIL",
+    "BOOM",
+    "LIFE"
 ];
 export default answerList;
 //# sourceMappingURL=answers.js.map

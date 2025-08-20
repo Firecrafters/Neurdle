@@ -26,7 +26,12 @@ const answerList: string[] = [
     "HEART",
     "BACKSLASH",
     "ANNY",
-    "BANANARUM"
+    "BANANARUM",
+    "VEDALAI",
+    "GIGANEURO",
+    "GIGAEVIL",
+    "BOOM",
+    "LIFE"
 ]
 
 export default answerList;
