@@ -1,10 +1,12 @@
 :root {
-    --container-width: clamp(100px, 90vw, 500px);
-    --grid-width: calc(var(--container-width) * 0.8);
+    --container-width: clamp(280px, 90vw, 480px);
+    --grid-width: calc(var(--container-width) * 0.9);
     --tile-gap: calc(var(--container-width) * 0.016);
     --key-gap: 4px;
     --key-height: calc(var(--container-width) * 0.128);
-    --font-size-tile: calc(var(--grid-width) * 0.108);
+    --key-width: calc(var(--container-width) * 0.08);
+    --key-width-wide: calc(var(--container-width) * 0.15);
+    --font-size-tile: clamp(1.2rem, 3.5vw, 2.5rem);
     --font-size-key: calc(var(--container-width) * 0.042);
     --bg: #121213;
     --fg: #e5e5e5;
@@ -27,43 +29,55 @@ html,
 body {
     display: flex;
     justify-content: center;
-    height: 100vh;
-    width: 100%;
-    margin: 0;
+    min-height: 100vh;
     background: var(--bg);
     color: var(--fg);
     font-family: var(--sans-serif);
     align-items: center;
-    overflow: hidden;
+    margin: 0;
+    padding: 0;
+    overflow-y: hidden;
+    overflow-x: visible;
 }
 
 .wrap {
-    min-height: 100%;
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 100%;
+    max-width: 100vw;
+    padding: 1rem;
+    box-sizing: border-box;
 }
 
 main {
-    width: var(--container-width);
+    width: 100%;
+    max-width: var(--container-width);
     margin: 0 auto;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 100vh;
+    min-height: 100vh;
+    padding: 1rem 0;
+    box-sizing: border-box;
 }
 
 .board-container {
     position: relative;
-    margin-top: 12px;
+    margin: 1rem 0;
+    width: 100%;
+    max-width: var(--grid-width);
 }
 
 .board {
-    width: var(--grid-width);
+    width: 100%;
+    max-width: var(--grid-width);
     display: grid;
     gap: var(--tile-gap);
     touch-action: manipulation;
+    margin: 0 auto;
 }
 
 .tile {
@@ -72,6 +86,7 @@ main {
     background: transparent;
     perspective: 800px;
     aspect-ratio: 1;
+    font-size: var(--font-size-tile);
 }
 
 .tile.filled {
@@ -130,15 +145,19 @@ main {
 
 .keyboard {
     width: 100%;
+    max-width: var(--container-width);
     display: grid;
     gap: var(--key-gap);
-    padding: 2rem;
+    padding: 1rem;
+    margin-top: 1rem;
 }
 
 .row {
     display: flex;
     justify-content: center;
     gap: var(--key-gap);
+    width: 100%;
+    max-width: 100%;
 }
 
 .key {
@@ -147,8 +166,10 @@ main {
     border: none;
     border-radius: 4px;
     height: var(--key-height);
-    padding: 0 clamp(6px, 2vw, 10px);
-    min-width: clamp(16px, 8vw, 44px);
+    padding: 0 clamp(6px, 1vw, 10px);
+    min-width: var(--key-width);
+    flex: 1;
+    max-width: calc(var(--key-width) * 1.5);
     font-weight: 600;
     font-size: var(--font-size-key);
     cursor: pointer;
@@ -163,7 +184,9 @@ main {
 }
 
 .key.wide {
-    min-width: clamp(32px, 15vw, 80px);
+    min-width: var(--key-width-wide);
+    max-width: calc(var(--key-width-wide) * 1.2);
+    flex: 1.5;
 }
 
 .key.correct {
@@ -303,4 +326,39 @@ main {
 
 .confetti.circle {
     border-radius: 50%;
+}
+
+/* Mobile optimizations */
+@media (max-width: 480px) {
+    :root {
+        --container-width: clamp(280px, 95vw, 400px);
+        --key-width: calc(var(--container-width) * 0.07);
+        --key-width-wide: calc(var(--container-width) * 0.13);
+        --font-size-tile: clamp(1rem, 3vw, 1.8rem);
+        --font-size-key: calc(var(--container-width) * 0.038);
+    }
+
+    .wrap {
+        padding: 0.5rem;
+    }
+
+    main {
+        min-height: auto;
+        padding: 0.5rem 0;
+    }
+
+    .keyboard {
+        padding: 0.5rem;
+    }
+}@media (max-height: 600px) {
+    main {
+        min-height: auto;
+        justify-content: flex-start;
+        padding: 0.5rem 0;
+    }
+
+    .keyboard {
+        padding: 0.5rem;
+        margin-top: 0.5rem;
+    }
 }

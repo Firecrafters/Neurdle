@@ -182,7 +182,7 @@ function generateShareText() {
         "present": "🟧",
         "absent": "⬛"
     };
-    let shareText = `: ${state.win ? state.row + 1 : "X"}/${MAX_ROWS}\n\n`;
+    let shareText = `Firecrafter28.github.io/Neurdle\n ${state.win ? state.row + 1 : "X"}/${MAX_ROWS}\n\n`;
     for (let r = 0; r <= (state.win ? state.row : MAX_ROWS - 1); r++) {
         for (let c = 0; c < WORD_LEN; c++) {
             const status = state.status[r]?.[c];
@@ -244,6 +244,8 @@ function showFinishScreen() {
         finishTitle.textContent = `Better luck next time!`;
     }
     finishScreen.setAttribute("aria-hidden", "false");
+    const finishMessage = document.getElementById("finish-message");
+    finishMessage.textContent = `The word was: ${ANSWER}`;
     setTimeout(() => {
         finishScreen.classList.add("show");
         finishScreen.scrollIntoView({
@@ -251,6 +253,12 @@ function showFinishScreen() {
             block: "start"
         });
     }, 800);
+    const boardContainer = document.getElementById("board-container");
+    const keyboard = document.getElementById("keyboard");
+    setTimeout(() => {
+        boardContainer.style.visibility = "hidden";
+        keyboard.style.visibility = "hidden";
+    }, 100);
 }
 function handleKey(ch) {
     if (state.done)

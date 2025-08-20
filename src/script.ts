@@ -199,7 +199,7 @@ function generateShareText() {
         "absent": "⬛"
     };
 
-    let shareText = `https://Firecrafter28.github.io/Neurdle: ${state.win ? state.row + 1 : "X"}/${MAX_ROWS}\n\n`;
+    let shareText = `Firecrafter28.github.io/Neurdle\n ${state.win ? state.row + 1 : "X"}/${MAX_ROWS}\n\n`;
 
     for (let r = 0; r <= (state.win ? state.row : MAX_ROWS - 1); r++) {
         for (let c = 0; c < WORD_LEN; c++) {
@@ -270,6 +270,9 @@ function showFinishScreen() {
 
     finishScreen.setAttribute("aria-hidden", "false");
 
+    const finishMessage: HTMLElement = document.getElementById("finish-message") as HTMLElement;
+    finishMessage.textContent = `The word was: ${ANSWER}`;
+
     setTimeout(() => {
         finishScreen.classList.add("show");
         finishScreen.scrollIntoView({
@@ -277,6 +280,14 @@ function showFinishScreen() {
             block: "start"
         });
     }, 800);
+
+    const boardContainer: HTMLElement = document.getElementById("board-container") as HTMLElement;
+    const keyboard: HTMLElement = document.getElementById("keyboard") as HTMLElement;
+
+    setTimeout(() => {
+        boardContainer.style.visibility = "hidden";
+        keyboard.style.visibility = "hidden";
+    }, 100)
 }
 
 function handleKey(ch: string) {
@@ -369,6 +380,7 @@ function copyToClipboard() {
 
 window.addEventListener("keydown", onKeydown);
 copyButton.addEventListener("click", copyToClipboard);
+
 
 buildBoard();
 buildKeyboard();

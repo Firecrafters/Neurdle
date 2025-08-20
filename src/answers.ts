@@ -25,7 +25,9 @@ const answerList: string[] = [
     "CERBER",
     "HEART",
     "BACKSLASH",
-    "ANNY"
+    "ANNY",
+    "BANANARUM"
 ]
 
 export default answerList;
+
