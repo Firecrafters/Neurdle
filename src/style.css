@@ -100,7 +100,6 @@ main {
     font-size: var(--font-size-tile);
     backface-visibility: hidden;
     -webkit-backface-visibility: hidden;
-    /* Inset border so it doesn't flicker around flip edges */
     box-shadow: inset 0 0 0 2px var(--tile-border-color);
 }
 
