@@ -1,0 +1,22 @@
+{
+    "folders": [
+        {
+            "name": "Neurdle",
+            "path": ".."
+        }
+    ],
+    "settings": {
+        "explorer.fileNesting.enabled": true,
+        "explorer.fileNesting.patterns": {
+            "*.ts": "${capture}.js",
+            "*.js": "${capture}.js.map, ${capture}.d.ts, ${capture}.d.ts.map",
+            "package.json": "bun.lock"
+        }
+    },
+    "extensions": {
+        "recommendations": [
+            "EditorConfig.EditorConfig",
+            "pushqrdx.inline-html"
+        ]
+    }
+}
