@@ -172,7 +172,7 @@ function updateKeyboard(guess: string, statuses: string[]) {
 function commitRow() {
     const guess = (state.rows[state.row] || []).join("");
     if (guess.length < WORD_LEN) {
-        showToast("You need to fill all 5 letters to make a guess!");
+        showToast(`You need to fill all ${WORD_LEN} letters to make a guess!`);
         return;
     }
     const statuses = evaluate(guess.toUpperCase(), ANSWER);
