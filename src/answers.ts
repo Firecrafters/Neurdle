@@ -1,5 +1,6 @@
 const answerList: string[] = [
     "ABANDONEDARCHIVE",
+    "ABBERDEMON",
     "ALEX",
     "ANNY",
     "BACKSLASH",
@@ -15,6 +16,7 @@ const answerList: string[] = [
     "EVILYN",
     "FILTERED",
     "FILTERSAMA",
+    "FOCUS",
     "GIGAEVIL",
     "GIGANEURO",
     "HEART",
@@ -28,12 +30,30 @@ const answerList: string[] = [
     "NEURO",
     "NEUROSAMA",
     "NURU",
+    "PIPES",
+    "SMILE",
     "SPIN",
     "SUBTITLES",
     "TUTEL",
     "VEDAL",
     "VEDALAI",
-    "WINK"
+    "WINK",
+    "KARAOKE",
+    "XENOMORPH",
+    "LUCKY",
+    "DUCK",
+    "BUCKSHOT",
+    "SUPERIOR",
+    "ELLIE",
+    "BAO",
+    "FILLIAN",
+    "NEUROCAR",
+    "NEUROTRUCK",
+    "NEUROTIC",
+    "SHIRO",
+    "GIGAVEDAL",
+    "YAPPING",
+    "ESSAYING"
 ]
 
 export default answerList;
