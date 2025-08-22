@@ -43,7 +43,7 @@ function createConfetti(): void {
 }
 
 export function showFinishScreen(state: State, maxRows: number, wordLength: number, shareGrid: HTMLElement, finishTitle: HTMLElement, finishScreen: HTMLElement, answer: string): void {
-    const shareText = generateShareText(state, maxRows, wordLength);
+    const shareText = generateShareText(state, maxRows, wordLength, answer);
     shareGrid.textContent = shareText;
 
     if (state.win) {
@@ -76,14 +76,14 @@ export function showFinishScreen(state: State, maxRows: number, wordLength: numb
 
 }
 
-export function generateShareText(state: State, maxRows: number, wordLength: number): string {
+export function generateShareText(state: State, maxRows: number, wordLength: number, answer: string): string {
     const emojiMap = {
         "correct": "🟩",
         "present": "🟧",
         "absent": "⬛"
     };
 
-    let shareText = `Firecrafter28.github.io/Neurdle\n ${state.win ? state.row + 1 : "X"}/${maxRows}\n\n`;
+    let shareText = `Firecrafter28.github.io/Neurdle\nThe word was \"${answer}\" ${state.win ? `${state.row + 1}/${maxRows}` : "Failed"}\n\n`;
 
     for (let r = 0; r <= (state.win ? state.row : maxRows - 1); r++) {
         for (let c = 0; c < wordLength; c++) {
@@ -99,8 +99,8 @@ export function generateShareText(state: State, maxRows: number, wordLength: num
     return shareText;
 }
 
-export function copyToClipboard(state: State, maxRows: number, wordLength: number, copyButton: HTMLElement) {
-    const shareText = generateShareText(state, maxRows, wordLength);
+export function copyToClipboard(state: State, maxRows: number, wordLength: number, copyButton: HTMLElement, answer: string) {
+    const shareText = generateShareText(state, maxRows, wordLength, answer);
     navigator.clipboard.writeText(shareText).then(() => {
         copyButton.textContent = "Copied!";
         copyButton.classList.add("copied");

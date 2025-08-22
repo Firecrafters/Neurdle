@@ -95,7 +95,7 @@ export function buildKeyboard() {
 
 
 window.addEventListener("keydown", (e: KeyboardEvent): void  => onKeydown(e));
-copyButton.addEventListener("click", (): void => copyToClipboard(state, Config.MAX_ROWS, WORD_LEN, copyButton));
+copyButton.addEventListener("click", (): void => copyToClipboard(state, Config.MAX_ROWS, WORD_LEN, copyButton, ANSWER));
 
 buildBoard();
 buildKeyboard();

@@ -21,6 +21,7 @@
     - GIGAVEDAL
     - YAPPING
     - ESSAYING
+- Made the share text more descriptive
 
 # 1.0
 Initial Release
