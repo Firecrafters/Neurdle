@@ -9,3 +9,5 @@ yarn.lock
 *.js.map
 *.d.ts
 *.d.ts.map
+
+!types.d.ts
