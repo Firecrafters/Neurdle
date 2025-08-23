@@ -337,6 +337,9 @@ main {
     position: fixed;
     top: 0.5rem;
     right: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
 }
 
 .option {
@@ -458,7 +461,34 @@ main {
     }
 }
 
+#loading-display {
+    display: flex;
+    flex-direction: column;
+    background: #404040;
+    z-index: 2000;
+    font-family: var(--sans-serif);
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    left: 0;
+    top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
 
+    > img {
+        width: 100px;
+        animation: rotate infinite 1s linear;
+    }
+}
+
+
+@keyframes rotate {
+    100% {
+        transform: rotate(360deg);
+    }
+}
 
 /* Mobile optimizations */
 @media (max-width: 480px) {

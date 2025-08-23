@@ -42,8 +42,8 @@ function createConfetti(): void {
     }
 }
 
-export function showFinishScreen(state: State, maxRows: number, wordLength: number, shareGrid: HTMLElement, finishTitle: HTMLElement, finishScreen: HTMLElement, answer: string): void {
-    const shareText = generateShareText(state, maxRows, wordLength, answer);
+export function showFinishScreen(state: State, maxRows: number, wordLength: number, shareGrid: HTMLElement, finishTitle: HTMLElement, finishScreen: HTMLElement, answer: string, showAnswer: boolean): void {
+    const shareText = generateShareText(state, maxRows, wordLength, answer, showAnswer);
     shareGrid.textContent = shareText;
 
     if (state.win) {
@@ -76,14 +76,17 @@ export function showFinishScreen(state: State, maxRows: number, wordLength: numb
 
 }
 
-export function generateShareText(state: State, maxRows: number, wordLength: number, answer: string): string {
+export function generateShareText(state: State, maxRows: number, wordLength: number, answer: string, showAnswer: boolean): string {
     const emojiMap = {
         "correct": "🟩",
         "present": "🟧",
         "absent": "⬛"
     };
 
-    let shareText = `Firecrafter28.github.io/Neurdle\nThe word was \"${answer}\" ${state.win ? `${state.row + 1}/${maxRows}` : "Failed"}\n\n`;
+    let shareText = `Firecrafter28.github.io/Neurdle\n`;
+    if (showAnswer) shareText += `The word was "${answer}"\n`;
+    shareText += (state.win ? `${state.row + 1}/${maxRows}` : "Failed");
+    shareText += "\n\n"
 
     for (let r = 0; r <= (state.win ? state.row : maxRows - 1); r++) {
         for (let c = 0; c < wordLength; c++) {
@@ -99,8 +102,8 @@ export function generateShareText(state: State, maxRows: number, wordLength: num
     return shareText;
 }
 
-export function copyToClipboard(state: State, maxRows: number, wordLength: number, copyButton: HTMLElement, answer: string) {
-    const shareText = generateShareText(state, maxRows, wordLength, answer);
+export function copyToClipboard(state: State, maxRows: number, wordLength: number, copyButton: HTMLElement, answer: string, showAnswer: boolean) {
+    const shareText = generateShareText(state, maxRows, wordLength, answer, showAnswer);
     navigator.clipboard.writeText(shareText).then(() => {
         copyButton.textContent = "Copied!";
         copyButton.classList.add("copied");

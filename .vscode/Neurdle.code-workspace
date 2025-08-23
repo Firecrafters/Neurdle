@@ -11,7 +11,8 @@
             "*.ts": "${capture}.js",
             "*.js": "${capture}.js.map, ${capture}.d.ts, ${capture}.d.ts.map",
             "package.json": "bun.lock"
-        }
+        },
+        "explorer.fileNesting.expand": false
     },
     "extensions": {
         "recommendations": [

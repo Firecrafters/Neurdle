@@ -35,16 +35,27 @@
     <!-- End Google Tag Manager (noscript) -->
 
     <div id="options">
-        <button class="option" id="option-settings">
-            <img src="Assets/gear.svg">
+        <button class="option" id="option-settings" title="Settings">
+            <img src="Assets/icons/gear.svg">
         </button>
+        <button class="option" id="option-mode-daily" title="Daily Challenge">
+            <img src="Assets/icons/calendar.svg">
+        </button>
+        <button class="option" id="option-mode-random" title="Random">
+            <img src="Assets/icons/dice.svg">
+        </button>
+    </div>
+
+    <div id="loading-display">
+        <h1>Loading...</h1>
+        <img src="Assets/loading-circle.svg">
     </div>
 
     <div id="settings-popup">
         <div id="popup-header">
             <h1 id="popup-title">Settings</h1>
             <button id="popup-close-btn" class="option">
-                <img src="Assets/xmark.svg">
+                <img src="Assets/icons/xmark.svg">
             </button>
         </div>
         <div id="popup-body">
@@ -81,6 +92,7 @@
                         <div id="share-grid" class="share-grid"></div>
                         <div id="bottom-buttons">
                             <button id="copy-button" class="copy-button">Copy to clipboard</button>
+                            <button id="random-button" class="random-button">Play a random board</button>
                             <button id="restart-button" class="restart-button" onclick="location.reload()">Play Again</button>
                         </div>
                     </div>

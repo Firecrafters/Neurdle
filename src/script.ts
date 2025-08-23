@@ -1,9 +1,66 @@
 import type { State, KeyboardStatus } from "./types.js";
 import { copyToClipboard } from "./finish.js";
 import SettingsPopup from "./settings.js";
+import generateDailyWord from "./daily.js";
 import answerList from "./answers.js";
 import * as Keyboard from "./keyboard.js";
 import * as Config from "./config.js";
+
+const loadingScreen = document.getElementById("loading-display") as HTMLElement;
+document.addEventListener("DOMContentLoaded", () => loadingScreen.style.display = "none");
+
+export const enum DailyPlayed {
+    TRUE = "y",
+    FALSE = "n"
+}
+
+const enum Mode {
+    DAILY = 1,
+    RANDOM = 2
+}
+
+const urlMode = location.href.split("?")[1]?.split("=")[1];
+const urlModeNum = urlMode == "daily" ? Mode.DAILY :
+urlMode == "random" ? Mode.RANDOM : undefined;
+
+let mode: Mode = urlModeNum || Mode.RANDOM;
+
+function setMode(newMode: string): void {
+    let newUrl = location.href;
+    if (newUrl.includes("?")) {
+        newUrl = newUrl.split("?")[0] as string;
+    }
+    newUrl += `?mode=${newMode}`;
+
+    location.href = newUrl;
+}
+
+const restartButton = document.getElementById("restart-button") as HTMLElement;
+if (mode == Mode.DAILY) restartButton.style.display = "none";
+
+const randomButton = document.getElementById("option-mode-random") as HTMLElement;
+randomButton.addEventListener("click", () => {
+    setMode("random");
+});
+
+const dailyButton = document.getElementById("option-mode-daily") as HTMLElement;
+dailyButton.addEventListener("click", () => {
+    setMode("daily");
+});
+
+switch (mode) {
+    case Mode.DAILY:
+        dailyButton.style.display = "none";
+        break;
+    case Mode.RANDOM:
+        randomButton.style.display = "none";
+        break;
+}
+
+const playRandomButton = document.getElementById("random-button") as HTMLButtonElement;
+playRandomButton.addEventListener("click", () => {
+    setMode("random");
+});
 
 const popup = document.getElementById("settings-popup") as HTMLElement;
 const settingsPopup = new SettingsPopup(popup);
@@ -49,9 +106,16 @@ spellcheckSetting.addEventListener("click", () => {
 });
 
 let rand = Math.floor(Math.random() * answerList.length);
-const ANSWER = answerList[rand] || "ERROR";
-if (!ANSWER) console.error("An error occured while getting the answer.");
-const WORD_LEN: number = ANSWER?.length || 5;
+let ans: string;
+
+if (mode == Mode.RANDOM) {
+    ans = answerList[rand] as string;
+} else {
+    ans = generateDailyWord();
+}
+
+const ANSWER = ans;
+const WORD_LEN = ANSWER.length;
 
 const board: HTMLElement = document.getElementById("board") as HTMLElement;
 
@@ -101,7 +165,7 @@ function buildBoard() {
 
 function handleKey(ch: string): void {
     const spellcheck: boolean = (spellcheckEnabled == SpellcheckState.ENABLED);
-    Keyboard.handleKey(ch, state, WORD_LEN, toast, ANSWER, shareGrid, finishTitle, finishScreen, spellcheck);
+    Keyboard.handleKey(ch, state, WORD_LEN, toast, ANSWER, shareGrid, finishTitle, finishScreen, spellcheck, mode == Mode.RANDOM);
 }
 
 export function onKeydown(e: KeyboardEvent) {
@@ -138,7 +202,7 @@ export function buildKeyboard() {
 
 
 window.addEventListener("keydown", (e: KeyboardEvent): void  => onKeydown(e));
-copyButton.addEventListener("click", (): void => copyToClipboard(state, Config.MAX_ROWS, WORD_LEN, copyButton, ANSWER));
+copyButton.addEventListener("click", (): void => copyToClipboard(state, Config.MAX_ROWS, WORD_LEN, copyButton, ANSWER, mode == Mode.RANDOM));
 
 buildBoard();
 buildKeyboard();

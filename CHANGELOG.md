@@ -1,3 +1,6 @@
+# 1.3
+- Added daily challenge
+
 # 1.2
 - Added spellchecking
 - Added settings menu
