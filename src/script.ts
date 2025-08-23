@@ -5,7 +5,9 @@ import * as Keyboard from "./keyboard.js";
 import * as Config from "./config.js";
 
 
-var rand = Math.floor(Math.random() * answerList.length);
+let spellcheckEnabled = true;
+
+let rand = Math.floor(Math.random() * answerList.length);
 const ANSWER = answerList[rand] || "ERROR";
 if (!ANSWER) console.error("An error occured while getting the answer.");
 const WORD_LEN: number = ANSWER?.length || 5;
@@ -23,7 +25,6 @@ const finishScreen: HTMLElement = document.getElementById("finish-screen") as HT
 const finishTitle: HTMLElement = document.getElementById("finish-title") as HTMLElement;
 const shareGrid: HTMLElement = document.getElementById("share-grid") as HTMLElement;
 const copyButton: HTMLElement = document.getElementById("copy-button") as HTMLElement;
-
 
 
 let state: State = {
@@ -58,7 +59,7 @@ function buildBoard() {
 }
 
 function handleKey(ch: string): void {
-    Keyboard.handleKey(ch, state, WORD_LEN, toast, ANSWER, shareGrid, finishTitle, finishScreen)
+    Keyboard.handleKey(ch, state, WORD_LEN, toast, ANSWER, shareGrid, finishTitle, finishScreen, spellcheckEnabled);
 }
 
 export function onKeydown(e: KeyboardEvent) {

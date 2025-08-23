@@ -1,3 +1,6 @@
+# 1.2
+- Added spellchecking
+
 # 1.1
 - Added favicon
 - Added answers:

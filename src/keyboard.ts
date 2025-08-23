@@ -1,6 +1,7 @@
 import { getFaces, setTile, setTileStatus, evaluate } from "./tile.js";
 import { showFinishScreen } from "./finish.js";
 import showToast from "./toast.js";
+import spellCheck from "./spellcheck.js";
 import * as Config from "./config.js"
 import type { State, KeyboardStatus } from "./types";
 
@@ -29,8 +30,12 @@ function updateKeyboard(guess: string, statuses: string[], wordLength: number, s
     });
 }
 
-function commitRow(state: State, wordLength: number, toast: HTMLElement, answer: string, shareGrid: HTMLElement, finishTitle: HTMLElement, finishScreen: HTMLElement) {
+function commitRow(state: State, wordLength: number, toast: HTMLElement, answer: string, shareGrid: HTMLElement, finishTitle: HTMLElement, finishScreen: HTMLElement, useSpellcheck: boolean) {
     const guess = (state.rows[state.row] || []).join("");
+    if (useSpellcheck && !spellCheck(guess)) {
+        showToast(`You must guess actual words or Neuro-themed words.`, toast);
+        return;
+    }
     if (guess.length < wordLength) {
         showToast(`You need to fill all ${wordLength} letters to make a guess!`, toast);
         return;
@@ -52,10 +57,10 @@ function commitRow(state: State, wordLength: number, toast: HTMLElement, answer:
     }, totalDelay);
 }
 
-export function handleKey(ch: string, state: State, wordLength: number, toast: HTMLElement, answer: string, shareGrid: HTMLElement, finishTitle: HTMLElement, finishScreen: HTMLElement) {
+export function handleKey(ch: string, state: State, wordLength: number, toast: HTMLElement, answer: string, shareGrid: HTMLElement, finishTitle: HTMLElement, finishScreen: HTMLElement, useSpellcheck: boolean) {
     if (state.done) return;
 
-    if (ch === "ENTER") { commitRow(state, wordLength, toast, answer, shareGrid, finishTitle, finishScreen); return; }
+    if (ch === "ENTER") { commitRow(state, wordLength, toast, answer, shareGrid, finishTitle, finishScreen, useSpellcheck); return; }
     if (ch === "BACKSPACE") {
         if (state.col > 0) {
             state.col--;
