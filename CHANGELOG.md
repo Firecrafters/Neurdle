@@ -1,5 +1,6 @@
 # 1.2
 - Added spellchecking
+- Added settings menu
 
 # 1.1
 - Added favicon

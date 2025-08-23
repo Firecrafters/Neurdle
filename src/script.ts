@@ -1,11 +1,52 @@
 import type { State, KeyboardStatus } from "./types.js";
 import { copyToClipboard } from "./finish.js";
+import SettingsPopup from "./settings.js";
 import answerList from "./answers.js";
 import * as Keyboard from "./keyboard.js";
 import * as Config from "./config.js";
 
+const popup = document.getElementById("settings-popup") as HTMLElement;
+const settingsPopup = new SettingsPopup(popup);
+settingsPopup.close();
 
-let spellcheckEnabled = true;
+const settingsButton = document.getElementById("option-settings") as HTMLButtonElement;
+settingsButton.addEventListener("click", () => {
+    settingsPopup.open();
+    settingsButton.disabled = true;
+});
+
+const settingsCloseButton = document.getElementById("popup-close-btn") as HTMLButtonElement;
+settingsCloseButton.addEventListener("click", () => {
+    settingsPopup.close();
+    settingsButton.disabled = false
+});
+
+export enum SpellcheckState {
+    DISABLED = "0",
+    ENABLED = "1"
+}
+
+let spellcheckEnabled: string = localStorage.getItem("spellcheck") || SpellcheckState.ENABLED;
+
+const spellcheckSetting = document.getElementById("setting-spellcheck") as HTMLInputElement;
+
+function updateSettings(): void {
+    const spellcheck: boolean = (spellcheckEnabled == SpellcheckState.ENABLED);
+    spellcheckSetting.checked = spellcheck;
+}
+
+updateSettings();
+
+spellcheckSetting.addEventListener("click", () => {
+    if (spellcheckEnabled == SpellcheckState.ENABLED) {
+        spellcheckEnabled = SpellcheckState.DISABLED;
+    } else {
+        spellcheckEnabled = SpellcheckState.ENABLED;
+    }
+
+    localStorage.setItem("spellcheck", spellcheckEnabled);
+    updateSettings();
+});
 
 let rand = Math.floor(Math.random() * answerList.length);
 const ANSWER = answerList[rand] || "ERROR";
@@ -59,7 +100,8 @@ function buildBoard() {
 }
 
 function handleKey(ch: string): void {
-    Keyboard.handleKey(ch, state, WORD_LEN, toast, ANSWER, shareGrid, finishTitle, finishScreen, spellcheckEnabled);
+    const spellcheck: boolean = (spellcheckEnabled == SpellcheckState.ENABLED);
+    Keyboard.handleKey(ch, state, WORD_LEN, toast, ANSWER, shareGrid, finishTitle, finishScreen, spellcheck);
 }
 
 export function onKeydown(e: KeyboardEvent) {
