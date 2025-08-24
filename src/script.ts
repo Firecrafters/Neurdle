@@ -61,6 +61,7 @@ const playRandomButton = document.getElementById("random-button") as HTMLButtonE
 playRandomButton.addEventListener("click", () => {
     setMode("random");
 });
+if (mode == Mode.RANDOM) playRandomButton.style.display = "none";
 
 const popup = document.getElementById("settings-popup") as HTMLElement;
 const settingsPopup = new SettingsPopup(popup);
