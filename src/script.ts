@@ -140,6 +140,7 @@ let state: State = {
     status: Array.from({ length: Config.MAX_ROWS }, () => Array(WORD_LEN).fill("")),
     done: false,
     win: false,
+    animating: false,
     keyboard: {} as Record<string, KeyboardStatus>,
 };
 

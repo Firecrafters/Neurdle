@@ -5,6 +5,7 @@ export interface State {
     status: string[][],
     done: boolean,
     win: boolean,
+    animating: boolean,
     keyboard: Record<string, KeyboardStatus>
 }
 
