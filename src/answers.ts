@@ -53,7 +53,8 @@ const answerList: string[] = [
     "SHIRO",
     "GIGAVEDAL",
     "YAPPING",
-    "ESSAYING"
+    "ESSAYING",
+    "CHECKYOURSHIPLOG"
 ]
 
 export default answerList;

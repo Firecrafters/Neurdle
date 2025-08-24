@@ -297,7 +297,7 @@ main {
     border: 1px solid #21262d;
 }
 
-.copy-button, .restart-button {
+.copy-button, .restart-button, .random-button {
     background: var(--correct);
     color: white;
     border: none;
