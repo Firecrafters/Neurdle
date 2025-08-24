@@ -83,7 +83,7 @@ export function generateShareText(state: State, maxRows: number, wordLength: num
         "absent": "⬛"
     };
 
-    let shareText = `Firecrafter28.github.io/Neurdle\n`;
+    let shareText = `https://firecrafter28.github.io/Neurdle\n`;
     if (showAnswer) shareText += `The word was "${answer}"\n`;
     shareText += (state.win ? `${state.row + 1}/${maxRows}` : "Failed");
     shareText += "\n\n"
