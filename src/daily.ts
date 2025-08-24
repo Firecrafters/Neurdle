@@ -1,4 +1,5 @@
 import answerList from "./answers.js";
+import debugLog from "./logger.js";
 
 export default function generateDailyWord(): string {
     const date = new Date();
@@ -12,8 +13,8 @@ export default function generateDailyWord(): string {
         index -= day;
     }
 
-    console.log(index);
-    console.log(answerList[index]);
+    debugLog(`Answer index: ${index}`);
+    debugLog(`Answer: ${answerList[index]}`);
 
     return answerList[index] as string;
 }
