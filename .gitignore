@@ -11,3 +11,6 @@ yarn.lock
 *.d.ts.map
 
 !types.d.ts
+
+# Test workspace
+Neurdle-tests.code-workspace
