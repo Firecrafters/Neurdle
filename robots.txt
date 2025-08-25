@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://firecrafter28.github.io/Neurdle/sitemap.xml
