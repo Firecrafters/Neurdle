@@ -123,7 +123,7 @@ main {
 
 .front {
     color: var(--fg);
-    background: #202020;
+    background: var(--bg);
     z-index: 1;
 }
 
