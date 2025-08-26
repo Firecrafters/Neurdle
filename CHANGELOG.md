@@ -1,3 +1,6 @@
+# 1.4
+- Added light mode setting
+
 # 1.3
 - Added daily challenge
 

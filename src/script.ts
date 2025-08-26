@@ -79,6 +79,7 @@ settingsCloseButton.addEventListener("click", () => {
     settingsButton.disabled = false
 });
 
+// Spellcheck setting
 export enum SpellcheckState {
     DISABLED = "0",
     ENABLED = "1"
@@ -87,13 +88,6 @@ export enum SpellcheckState {
 let spellcheckEnabled: string = localStorage.getItem("spellcheck") || SpellcheckState.ENABLED;
 
 const spellcheckSetting = document.getElementById("setting-spellcheck") as HTMLInputElement;
-
-function updateSettings(): void {
-    const spellcheck: boolean = (spellcheckEnabled == SpellcheckState.ENABLED);
-    spellcheckSetting.checked = spellcheck;
-}
-
-updateSettings();
 
 spellcheckSetting.addEventListener("click", () => {
     if (spellcheckEnabled == SpellcheckState.ENABLED) {
@@ -105,6 +99,38 @@ spellcheckSetting.addEventListener("click", () => {
     localStorage.setItem("spellcheck", spellcheckEnabled);
     updateSettings();
 });
+
+// Theme setting
+enum Theme {
+    DARK = "dark",
+    LIGHT = "light",
+}
+
+let themeValue: string = localStorage.getItem("theme") || Theme.DARK;
+
+const themeSetting = document.getElementById("setting-theme") as HTMLInputElement;
+
+themeSetting.addEventListener("click", () => {
+    if (themeValue == Theme.DARK) {
+        themeValue = Theme.LIGHT;
+    } else {
+        themeValue = Theme.DARK;
+    }
+
+    localStorage.setItem("theme", themeValue);
+    updateSettings();
+})
+
+function updateSettings(): void {
+    const spellcheck: boolean = (spellcheckEnabled == SpellcheckState.ENABLED);
+    spellcheckSetting.checked = spellcheck;
+
+    const theme: boolean = (themeValue == Theme.DARK);
+    themeSetting.checked = !theme;
+    document.body.className = themeValue;
+}
+
+updateSettings();
 
 let rand = Math.floor(Math.random() * answerList.length);
 let ans: string;
