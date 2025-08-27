@@ -4,11 +4,15 @@
     "author": "Firecrafter28",
     "scripts": {
         "build-ts": "tsc",
-        "build-sass": "sass src"
+        "build-sass": "sass src",
+        "lint": "eslint ./src"
     },
-    "packageManager": "bun@1.2.19",
+    "packageManager": "bun@1.2.21",
     "dependencies": {
+        "@typescript-eslint/eslint-plugin": "^8.41.0",
+        "@typescript-eslint/parser": "^8.41.0",
         "bun": "^1.2.21",
+        "eslint": "^9.34.0",
         "sass": "^1.91.0",
         "typescript": "^5.9.2"
     },

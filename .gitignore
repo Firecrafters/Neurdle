@@ -1,8 +1,10 @@
 node_modules/
 
+
 # Using bun
 package-lock.json
 yarn.lock
+
 
 # Compiled TypeScript files
 *.js
@@ -12,8 +14,13 @@ yarn.lock
 
 !types.d.ts
 
+# Keep eslint config
+!eslint.config.js
+
+
 # Test workspace
 Neurdle-tests.code-workspace
+
 
 # Compiled SASS
 *.css
