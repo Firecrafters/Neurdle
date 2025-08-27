@@ -16,5 +16,5 @@ yarn.lock
 Neurdle-tests.code-workspace
 
 # Compiled SASS
-# *.css
+*.css
 *.css.map
