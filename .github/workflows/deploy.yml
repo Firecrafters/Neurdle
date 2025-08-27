@@ -33,13 +33,16 @@ jobs:
         run: bun install
 
       - name: Lint TypeScript
-        run: bun run lint
+        run: bun run lint-ts
 
       - name: Build TypeScript
         run: bun run build-ts
 
-      - name: Build SASS
-        run: bun run build-sass
+      - name: Lint SCSS
+        run: bun run lint-scss
+
+      - name: Build SCSS
+        run: bun run build-scss
 
       - name: Setup Pages
         uses: actions/configure-pages@v5

@@ -17,6 +17,9 @@ yarn.lock
 # Keep eslint config
 !eslint.config.js
 
+# Keep stylelint config
+!stylelint.config.js
+
 
 # Test workspace
 Neurdle-tests.code-workspace

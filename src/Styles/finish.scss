@@ -1,0 +1,76 @@
+.finish-screen {
+    width: var(--container-width);
+    display: none;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    padding: 1rem;
+    box-sizing: border-box;
+    margin-top: 2rem;
+    min-height: 100vh;
+
+    &.show {
+        display: block;
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.finish-content {
+    text-align: center;
+    background: var(--bg);
+    min-height: 100vh;
+}
+
+.share-section {
+    margin: 2rem 0;
+    padding: 1.5rem;
+    background: var(--popup-bg);
+    border-radius: 8px;
+    border: 1px solid var(--border);
+
+    h3 {
+        margin: 0 0 1rem;
+        font-size: clamp(1rem, 3vw, 1.2rem);
+    }
+}
+
+.share-grid {
+    font-family: var(--font-monospace);
+    font-size: clamp(1.2rem, 3vw, 1.3rem);
+    line-height: 1.2;
+    margin: 1rem 0;
+    white-space: pre-line;
+    background: var(--bg);
+    padding: 1rem;
+    border-radius: 6px;
+    border: 1px solid #21262d;
+}
+
+.copy-button, .restart-button, .random-button {
+    background: var(--color-correct);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 0.75rem 1.5rem;
+    font-weight: 600;
+    cursor: pointer;
+    font-size: clamp(0.9rem, 2.5vw, 1rem);
+    transition: background-color 0.2s;
+}
+
+.copy-button {
+    &:hover { background: #6aa85e; }
+    &.copied { background: var(--color-present); }
+}
+
+.confetti {
+    position: fixed;
+    width: 10px;
+    height: 10px;
+    pointer-events: none;
+    z-index: 1000;
+
+    &.square { border-radius: 2px; }
+    &.circle { border-radius: 50%; }
+}

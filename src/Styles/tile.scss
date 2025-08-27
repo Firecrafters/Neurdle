@@ -1,0 +1,70 @@
+.tile {
+    --tile-border-color: var(--border);
+
+    background: transparent;
+    perspective: 800px;
+    aspect-ratio: 1;
+    font-size: var(--font-size-tile);
+
+    &.filled {
+        --tile-border-color: #565758;
+    }
+}
+
+.inner {
+    position: absolute;
+    inset: 0;
+    transform-style: preserve-3d;
+    transition: transform 600ms ease;
+
+    &.flip {
+        transform: rotateX(180deg);
+    }
+}
+
+.face {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: var(--font-size-tile);
+    backface-visibility: hidden;
+    box-shadow: inset 0 0 0 2px var(--tile-border-color);
+}
+
+.front {
+    color: var(--fg);
+    background: var(--bg);
+    z-index: 1;
+}
+
+.back {
+    transform: rotateX(180deg);
+    z-index: 0;
+
+    &.correct, &.present, &.absent {
+        z-index: 2
+    }
+
+    &.correct {
+        background: var(--color-correct);
+
+        --tile-border-color: var(--color-correct);
+    }
+
+    &.present {
+        background: var(--color-present);
+
+        --tile-border-color: var(--color-present);
+    }
+
+    &.absent {
+        background: var(--color-absent);
+
+        --tile-border-color: var(--color-absent);
+    }
+
+}

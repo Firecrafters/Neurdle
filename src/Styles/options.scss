@@ -1,0 +1,122 @@
+#options {
+    position: fixed;
+    top: 0.5rem;
+    right: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.option {
+    transition: all 0.3s ease;
+    width: 60px;
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #fff0;
+    border: 2px solid #fff6;
+    border-radius: 8px;
+
+    &:hover:not(:disabled) {
+        background: var(--option-bg);
+        border-color: #fff0;
+        cursor: pointer;
+    }
+
+    > img {
+        transition: all 0.3s ease;
+        width: 50px;
+    }
+}
+
+#settings-popup {
+    background: var(--popup-bg);
+    color: #fff;
+    width: 40rem;
+    height: 20rem;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 10px;
+    z-index: 1000;
+
+    > #popup-header {
+        font-family: var(--font-normal);
+        margin: 15px 35px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        > #popup-close-btn {
+            width: 40px;
+            height: 40px;
+        }
+    }
+
+    > #popup-body {
+        display: flex;
+        flex-direction: column;
+        margin: 0 40px;
+        gap: 10px;
+
+        > .setting {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+
+            > .setting-switch {
+                transition: all 0.2s ease;
+                background: #101010;
+                height: 25px;
+                width: 50px;
+                display: flex;
+                align-items: center;
+                cursor: pointer;
+                position: absolute;
+                border-radius: 5px;
+
+                &:hover { filter: brightness(0.6); }
+
+                > .switch-slider {
+                    background: #101010;
+                    transition: all 0.3s ease;
+                    width: 25px;
+                    height: 25px;
+                    position: absolute;
+                    border-radius: 5px;
+                    cursor: pointer;
+                }
+
+                &:has(input:checked) {
+                    background: #0F0;
+
+                    > .switch-slider { left: 0%; }
+                }
+
+                &:not(:has(input:checked)) {
+                    background: #F00;
+
+                    > .switch-slider {
+                        left: 100%;
+                        transform: translateX(-100%);
+                    }
+                }
+
+
+                > input {
+                    width: 50px;
+                    opacity: 0;
+                    cursor: pointer;
+                }
+            }
+
+            > .setting-label {
+                font-family: var(--font-normal);
+                font-size: 20px;
+                margin-left: 60px;
+            }
+        }
+    }
+}

@@ -4,8 +4,9 @@
     "author": "Firecrafter28",
     "scripts": {
         "build-ts": "tsc",
-        "build-sass": "sass src",
-        "lint": "eslint ./src"
+        "build-scss": "sass src/Styles",
+        "lint-ts": "eslint ./src",
+        "lint-scss": "stylelint \"src/Styles/*.scss\""
     },
     "packageManager": "bun@1.2.21",
     "dependencies": {
@@ -14,6 +15,8 @@
         "bun": "^1.2.21",
         "eslint": "^9.34.0",
         "sass": "^1.91.0",
+        "stylelint": "^16.23.1",
+        "stylelint-config-standard-scss": "^15.0.1",
         "typescript": "^5.9.2"
     },
     "type": "module"

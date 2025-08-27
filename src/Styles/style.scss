@@ -1,0 +1,193 @@
+@use "theme";
+@use "tile";
+@use "keyboard";
+@use "finish";
+@use "options";
+
+:root {
+    --container-width: clamp(280px, 90vw, 600px);
+    --key-width: calc(var(--container-width) * 0.08);
+    --key-width-wide: calc(var(--container-width) * 0.15);
+    --key-height: calc(var(--container-width) * 0.128);
+    --grid-width: calc(var(--container-width) * 0.9);
+    --tile-gap: calc(var(--container-width) * 0.016);
+    --font-size-tile: clamp(1.2rem, 3.5vw, 2.5rem);
+    --font-size-key: calc(var(--container-width) * 0.042);
+    --key-gap: 4px;
+    --font-normal: system-ui, sans-serif;
+    --font-monospace: ui-monospace, monospace;
+    --color-present: #b59f3b;
+    --color-correct: #538d4e;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    display: flex;
+    justify-content: center;
+    min-height: 100vh;
+    background: var(--bg);
+    color: var(--fg);
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    overflow: visible hidden;
+}
+
+.hidden {
+    opacity: 0 !important;
+}
+
+.wrap {
+    font-family: var(--font-normal);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 100vh;
+    padding: 1rem;
+    box-sizing: border-box;
+}
+
+main {
+    width: 100%;
+    max-width: var(--container-width);
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    padding: 1rem 0;
+    box-sizing: border-box;
+}
+
+#game-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+// Board
+.board-container {
+    position: relative;
+    margin: 1rem 0;
+    width: 100%;
+    max-width: var(--grid-width);
+}
+
+.board {
+    width: 100%;
+    max-width: var(--grid-width);
+    display: grid;
+    gap: var(--tile-gap);
+    touch-action: manipulation;
+    margin: 0 auto;
+}
+
+// Toast
+.toast {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #920f0f;
+    color: white;
+    padding: 16px 24px;
+    border-radius: 8px;
+    font-size: 18px;
+    font-weight: 600;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 180ms ease, transform 180ms ease;
+    z-index: 100;
+    text-align: center;
+
+    &.show {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+    }
+}
+
+// GitHub link
+#github-link {
+    position: fixed;
+    bottom: 0.5rem;
+    left: 0.5rem;
+
+    > a > img {
+        width: 50px !important;
+        height: 50px !important;
+    }
+}
+
+// Loading screen
+#loading-display {
+    display: flex;
+    flex-direction: column;
+    background: var(--bg);
+    color: var(--fg);
+    z-index: 2000;
+    font-family: var(--font-normal);
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    left: 0;
+    top: 0;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+
+    // stylelint-disable-next-line no-descending-specificity
+    > img {
+        width: 100px;
+        animation: rotate infinite 1s linear;
+    }
+}
+
+// Animations
+@keyframes rotate {
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+// Screen sizes
+@media (width <= 480px) {
+    :root {
+        --container-width: clamp(280px, 95rem, 400px);
+        --key-width: calc(var(--container-width) * 0.07);
+        --key-width-wide: calc(var(--container-width) * 0.13);
+        --font-size-tile: clamp(1rem, 3vw, 1.8rem);
+        --font-size-key: calc(var(--container-width) * 0.038);
+    }
+
+    .wrap {
+        padding: 0.5rem;
+    }
+
+    main {
+        min-height: auto;
+        padding: 0.5rem 0;
+    }
+
+    .keyboard {
+        padding: 0.5rem;
+    }
+}
+
+@media screen and (height <= 600px) {
+    main {
+        min-height: auto;
+        justify-content: flex-start;
+        padding: 0.5rem 0;
+    }
+
+    .keyboard {
+        padding: 0.5rem;
+        margin-top: 0.5rem;
+    }
+}
