@@ -6,18 +6,21 @@
         }
     ],
     "settings": {
+        // File nesting
         "explorer.fileNesting.enabled": true,
         "explorer.fileNesting.patterns": {
             "*.ts": "${capture}.js",
             "*.js": "${capture}.js.map, ${capture}.d.ts, ${capture}.d.ts.map",
-            "package.json": "bun.lock"
+            "package.json": "bun.lock",
+            "*.sass": "${capture}.css, ${capture}.css.map"
         },
         "explorer.fileNesting.expand": false
     },
     "extensions": {
         "recommendations": [
             "EditorConfig.EditorConfig",
-            "pushqrdx.inline-html"
+            "ms-vscode.live-server",
+            "syler.sass-indented"
         ]
     }
 }
