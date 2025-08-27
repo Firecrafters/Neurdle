@@ -8,7 +8,7 @@
     },
     "packageManager": "bun@1.2.19",
     "dependencies": {
-        "bun": "^1.2.20",
+        "bun": "^1.2.21",
         "sass": "^1.91.0",
         "typescript": "^5.9.2"
     },
