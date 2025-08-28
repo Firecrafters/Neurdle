@@ -4,6 +4,14 @@
 @use "finish";
 @use "options";
 
+// Tile colors
+$color-present: #b59f3b;
+$color-correct: #538d4e;
+
+// Fonts
+$font-normal: system-ui, sans-serif;
+$font-monospace: ui-monospace, monospace;
+
 :root {
     --container-width: clamp(280px, 90vw, 600px);
     --key-width: calc(var(--container-width) * 0.08);
@@ -14,10 +22,6 @@
     --font-size-tile: clamp(1.2rem, 3.5vw, 2.5rem);
     --font-size-key: calc(var(--container-width) * 0.042);
     --key-gap: 4px;
-    --font-normal: system-ui, sans-serif;
-    --font-monospace: ui-monospace, monospace;
-    --color-present: #b59f3b;
-    --color-correct: #538d4e;
 }
 
 * {
@@ -41,7 +45,7 @@ html, body {
 }
 
 .wrap {
-    font-family: var(--font-normal);
+    font-family: $font-normal;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -131,7 +135,7 @@ main {
     background: var(--bg);
     color: var(--fg);
     z-index: 2000;
-    font-family: var(--font-normal);
+    font-family: $font-normal;
     width: 100vw;
     height: 100vh;
     position: fixed;

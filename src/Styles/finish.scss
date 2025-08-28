@@ -36,7 +36,7 @@
 }
 
 .share-grid {
-    font-family: var(--font-monospace);
+    font-family: $font-monospace;
     font-size: clamp(1.2rem, 3vw, 1.3rem);
     line-height: 1.2;
     margin: 1rem 0;
@@ -48,7 +48,7 @@
 }
 
 .copy-button, .restart-button, .random-button {
-    background: var(--color-correct);
+    background: $color-correct;
     color: white;
     border: none;
     border-radius: 6px;
@@ -61,7 +61,7 @@
 
 .copy-button {
     &:hover { background: #6aa85e; }
-    &.copied { background: var(--color-present); }
+    &.copied { background: $color-present; }
 }
 
 .confetti {

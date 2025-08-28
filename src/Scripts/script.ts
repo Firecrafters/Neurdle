@@ -3,9 +3,15 @@ import { copyToClipboard } from "./finish.js";
 import SettingsPopup from "./settings.js";
 import generateDailyWord from "./daily.js";
 import answerList from "./answers.js";
+import debugLog from "./logger.js";
 import * as Keyboard from "./keyboard.js";
 import * as Config from "./config.js";
 
+// If the debug log is enabled give a warning
+debugLog("Debug log is enabled. Do not deploy the site without disabling it.", "warn");
+
+
+// The loading screen (visible until DOMContentLoaded)
 const loadingScreen = document.getElementById("loading-display") as HTMLElement;
 document.addEventListener("DOMContentLoaded", () => loadingScreen.style.display = "none");
 
@@ -33,16 +39,15 @@ function setMode(newMode: string): void {
 const restartButton = document.getElementById("restart-button") as HTMLElement;
 if (mode == Mode.DAILY) restartButton.style.display = "none";
 
+// Button to switch to random challenge
 const randomButton = document.getElementById("option-mode-random") as HTMLElement;
-randomButton.addEventListener("click", () => {
-    setMode("random");
-});
+randomButton.addEventListener("click", () => setMode("random"));
 
+// Button to switch to daily challenge
 const dailyButton = document.getElementById("option-mode-daily") as HTMLElement;
-dailyButton.addEventListener("click", () => {
-    setMode("daily");
-});
+dailyButton.addEventListener("click", () => setMode("daily"));
 
+// Hide the button for the current mode
 switch (mode) {
     case Mode.DAILY:
         dailyButton.style.display = "none";
@@ -52,29 +57,31 @@ switch (mode) {
         break;
 }
 
+// Button to switch to a random challenge
 const playRandomButton = document.getElementById("random-button") as HTMLButtonElement;
-playRandomButton.addEventListener("click", () => {
-    setMode("random");
-});
+playRandomButton.addEventListener("click", () => setMode("random"));
 if (mode == Mode.RANDOM) playRandomButton.style.display = "none";
 
+// The settings menu
 const popup = document.getElementById("settings-popup") as HTMLElement;
 const settingsPopup = new SettingsPopup(popup);
 settingsPopup.close();
 
+// Button to open the settings menu
 const settingsButton = document.getElementById("option-settings") as HTMLButtonElement;
 settingsButton.addEventListener("click", () => {
     settingsPopup.open();
     settingsButton.disabled = true;
 });
 
+// Button to close the settings menu
 const settingsCloseButton = document.getElementById("popup-close-btn") as HTMLButtonElement;
 settingsCloseButton.addEventListener("click", () => {
     settingsPopup.close();
-    settingsButton.disabled = false
+    settingsButton.disabled = false;
 });
 
-// Spellcheck setting
+// Spellcheck option in settings
 export enum SpellcheckState {
     DISABLED = "0",
     ENABLED = "1"
@@ -84,6 +91,7 @@ let spellcheckEnabled: string = localStorage.getItem("spellcheck") || Spellcheck
 
 const spellcheckSetting = document.getElementById("setting-spellcheck") as HTMLInputElement;
 
+// Toggle spellcheck setting
 spellcheckSetting.addEventListener("click", () => {
     if (spellcheckEnabled == SpellcheckState.ENABLED) {
         spellcheckEnabled = SpellcheckState.DISABLED;
@@ -101,11 +109,14 @@ enum Theme {
     LIGHT = "light",
 }
 
+// Get the theme from localstorage. If it is not found, set the theme to dark
 let themeValue: string = localStorage.getItem("theme") || Theme.DARK;
 
+// Theme option in settings
 const themeSetting = document.getElementById("setting-theme") as HTMLInputElement;
 
 themeSetting.addEventListener("click", () => {
+    // Toggle the theme value
     if (themeValue == Theme.DARK) {
         themeValue = Theme.LIGHT;
     } else {
@@ -114,8 +125,9 @@ themeSetting.addEventListener("click", () => {
 
     localStorage.setItem("theme", themeValue);
     updateSettings();
-})
+});
 
+// Update the settings options and apply the settings
 function updateSettings(): void {
     const spellcheck: boolean = (spellcheckEnabled == SpellcheckState.ENABLED);
     spellcheckSetting.checked = spellcheck;
@@ -165,6 +177,7 @@ let state: State = {
     keyboard: {} as Record<string, KeyboardStatus>,
 };
 
+// Function to create the game board
 function buildBoard() {
     board.innerHTML = "";
     for (let r = 0; r < Config.MAX_ROWS; r++) {
@@ -186,11 +199,13 @@ function buildBoard() {
     }
 }
 
+// Function to handle key presses
 function handleKey(ch: string): void {
     const spellcheck: boolean = (spellcheckEnabled == SpellcheckState.ENABLED);
     Keyboard.handleKey(ch, state, WORD_LEN, toast, ANSWER, shareGrid, finishTitle, finishScreen, spellcheck, mode == Mode.RANDOM);
 }
 
+// Function to handle physical keyboard input
 export function onKeydown(e: KeyboardEvent) {
     const key = e.key;
     if (key === "Enter") {
@@ -202,6 +217,7 @@ export function onKeydown(e: KeyboardEvent) {
     }
 }
 
+// Function to create the virtual keyboard
 export function buildKeyboard() {
     const rows = [
         { el: document.getElementById("kb-row-1"), keys: "QWERTYUIOP".split("") },
@@ -223,9 +239,11 @@ export function buildKeyboard() {
     }
 }
 
-
+// Get physical keyboard input
 window.addEventListener("keydown", (e: KeyboardEvent): void  => onKeydown(e));
+// Button to copy the results
 copyButton.addEventListener("click", (): void => copyToClipboard(state, Config.MAX_ROWS, WORD_LEN, copyButton, ANSWER, mode == Mode.RANDOM));
 
+// Build the game board and keyboard
 buildBoard();
 buildKeyboard();

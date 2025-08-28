@@ -50,13 +50,13 @@
     }
 
     &.correct {
-        background: var(--color-correct);
+        background: $color-correct;
 
         &:active { background-color: #6aa85e; }
     }
 
     &.present {
-        background: var(--color-present);
+        background: $color-present;
 
         &:active { background-color: #c9a96e; }
     }

@@ -1,4 +1,5 @@
 import type { State } from "./types";
+import debugLog from "./logger.js";
 
 function createConfetti(): void {
     const colors = ["#ff6b6b", "#4ecdc4", "#45b7d1", "#96ceb4", "#feca57", "#ff9ff3", "#54a0ff"];
@@ -43,13 +44,16 @@ function createConfetti(): void {
 }
 
 export function showFinishScreen(state: State, maxRows: number, wordLength: number, shareGrid: HTMLElement, finishTitle: HTMLElement, finishScreen: HTMLElement, answer: string, showAnswer: boolean): void {
+    debugLog("Game finished");
     const shareText = generateShareText(state, maxRows, wordLength, answer, showAnswer);
     shareGrid.textContent = shareText;
 
     if (state.win) {
+        debugLog("Player won");
         finishTitle.textContent = "🎉 You got it!";
         createConfetti();
     } else {
+        debugLog("Player lost");
         finishTitle.textContent = `Better luck next time!`;
     }
 

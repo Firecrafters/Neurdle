@@ -50,15 +50,15 @@
     }
 
     &.correct {
-        background: var(--color-correct);
+        background: $color-correct;
 
-        --tile-border-color: var(--color-correct);
+        --tile-border-color: $color-correct;
     }
 
     &.present {
-        background: var(--color-present);
+        background: $color-present;
 
-        --tile-border-color: var(--color-present);
+        --tile-border-color: $color-present;
     }
 
     &.absent {
