@@ -1,3 +1,5 @@
+@use "constants";
+
 .finish-screen {
     width: var(--container-width);
     display: none;
@@ -36,7 +38,7 @@
 }
 
 .share-grid {
-    font-family: $font-monospace;
+    font-family: var(--font-monospace);
     font-size: clamp(1.2rem, 3vw, 1.3rem);
     line-height: 1.2;
     margin: 1rem 0;
@@ -48,7 +50,7 @@
 }
 
 .copy-button, .restart-button, .random-button {
-    background: $color-correct;
+    background: var(--color-correct);
     color: white;
     border: none;
     border-radius: 6px;
@@ -61,7 +63,7 @@
 
 .copy-button {
     &:hover { background: #6aa85e; }
-    &.copied { background: $color-present; }
+    &.copied { background: var(--color-present); }
 }
 
 .confetti {

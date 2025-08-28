@@ -1,3 +1,5 @@
+@use "constants";
+
 .keyboard {
     width: 100%;
     max-width: var(--container-width);
@@ -50,13 +52,13 @@
     }
 
     &.correct {
-        background: $color-correct;
+        background: var(--color-correct);
 
         &:active { background-color: #6aa85e; }
     }
 
     &.present {
-        background: $color-present;
+        background: var(--color-present);
 
         &:active { background-color: #c9a96e; }
     }

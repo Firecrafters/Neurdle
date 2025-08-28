@@ -1,3 +1,5 @@
+@use "constants";
+
 .tile {
     --tile-border-color: var(--border);
 
@@ -50,15 +52,15 @@
     }
 
     &.correct {
-        background: $color-correct;
+        background: var(--color-correct);
 
-        --tile-border-color: $color-correct;
+        --tile-border-color: var(--color-correct);
     }
 
     &.present {
-        background: $color-present;
+        background: var(--color-present);
 
-        --tile-border-color: $color-present;
+        --tile-border-color: var(--color-present);
     }
 
     &.absent {

@@ -1,16 +1,9 @@
+@use "constants";
 @use "theme";
 @use "tile";
 @use "keyboard";
 @use "finish";
 @use "options";
-
-// Tile colors
-$color-present: #b59f3b;
-$color-correct: #538d4e;
-
-// Fonts
-$font-normal: system-ui, sans-serif;
-$font-monospace: ui-monospace, monospace;
 
 :root {
     --container-width: clamp(280px, 90vw, 600px);
@@ -45,7 +38,7 @@ html, body {
 }
 
 .wrap {
-    font-family: $font-normal;
+    font-family: var(--font-normal);
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -135,7 +128,7 @@ main {
     background: var(--bg);
     color: var(--fg);
     z-index: 2000;
-    font-family: $font-normal;
+    font-family: var(--font-normal);
     width: 100vw;
     height: 100vh;
     position: fixed;
