@@ -9,11 +9,6 @@ import * as Config from "./config.js";
 const loadingScreen = document.getElementById("loading-display") as HTMLElement;
 document.addEventListener("DOMContentLoaded", () => loadingScreen.style.display = "none");
 
-export const enum DailyPlayed {
-    TRUE = "y",
-    FALSE = "n"
-}
-
 const enum Mode {
     DAILY = 1,
     RANDOM = 2

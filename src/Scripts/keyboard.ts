@@ -40,10 +40,10 @@ function commitRow(state: State, wordLength: number, toast: HTMLElement, answer:
         showToast(`You need to fill all ${wordLength} letters to make a guess!`, toast);
         return;
     }
-    
+
     // Set animating flag to prevent multiple commitRow calls
     state.animating = true;
-    
+
     const statuses = evaluate(guess.toUpperCase(), answer, wordLength);
     for (let c = 0; c < wordLength; c++) setTileStatus(state.row, c, statuses[c], state);
     for (let c = 0; c < wordLength; c++) {
@@ -56,10 +56,10 @@ function commitRow(state: State, wordLength: number, toast: HTMLElement, answer:
         const win = statuses.every(s => s === "correct");
         state.win = win;
         state.done = win || state.row === Config.MAX_ROWS - 1;
-        
+
         // Clear animating flag before potentially showing finish screen or advancing row
         state.animating = false;
-        
+
         if (state.done) showFinishScreen(state, Config.MAX_ROWS, wordLength, shareGrid, finishTitle, finishScreen, answer, showAnswer);
         else { state.row++; state.col = 0; }
     }, totalDelay);
