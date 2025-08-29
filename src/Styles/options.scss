@@ -17,6 +17,7 @@
     background: #fff0;
     border: 2px solid #fff6;
     border-radius: 8px;
+    z-index: 5;
 
     &:hover:not(:disabled) {
         background: var(--option-bg);

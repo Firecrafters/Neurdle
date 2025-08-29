@@ -7,6 +7,8 @@
     perspective: 800px;
     aspect-ratio: 1;
     font-size: var(--font-size-tile);
+    width: var(--tile-size);
+    height: var(--tile-size);
 
     &.filled {
         --tile-border-color: #565758;

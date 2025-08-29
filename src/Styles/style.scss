@@ -6,13 +6,14 @@
 @use "options";
 
 :root {
-    --container-width: clamp(280px, 90vw, 600px);
+    --container-width: clamp(280px, 90vw, 500px);
     --key-width: calc(var(--container-width) * 0.08);
     --key-width-wide: calc(var(--container-width) * 0.15);
     --key-height: calc(var(--container-width) * 0.128);
-    --grid-width: calc(var(--container-width) * 0.9);
-    --tile-gap: calc(var(--container-width) * 0.016);
-    --font-size-tile: clamp(1.2rem, 3.5vw, 2.5rem);
+    --grid-max-width: clamp(300px, 80vw, 800px);
+    --tile-size: calc(var(--grid-max-width) / 18);
+    --tile-gap: 4px;
+    --font-size-tile: clamp(0.8rem, 2.5vw, 1.8rem);
     --font-size-key: calc(var(--container-width) * 0.042);
     --key-gap: 4px;
 }
@@ -44,14 +45,14 @@ html, body {
     flex-direction: column;
     align-items: center;
     width: 100%;
-    max-width: 100vh;
+    max-width: 100vw;
     padding: 1rem;
     box-sizing: border-box;
 }
 
 main {
     width: 100%;
-    max-width: var(--container-width);
+    max-width: var(--grid-max-width);
     margin: 0 auto;
     display: flex;
     flex-direction: column;
@@ -73,16 +74,18 @@ main {
     position: relative;
     margin: 1rem 0;
     width: 100%;
-    max-width: var(--grid-width);
+    max-width: var(--grid-max-width);
+    display: flex;
+    justify-content: center;
 }
 
 .board {
-    width: 100%;
-    max-width: var(--grid-width);
     display: grid;
     gap: var(--tile-gap);
     touch-action: manipulation;
-    margin: 0 auto;
+    width: fit-content;
+    justify-content: center;
+    align-items: center;
 }
 
 // Toast
@@ -152,39 +155,59 @@ main {
     }
 }
 
-// Screen sizes
+// Small screens
 @media (width <= 480px) {
     :root {
-        --container-width: clamp(280px, 95rem, 400px);
+        --grid-max-width: 95vw;
+        --tile-size: calc(var(--grid-max-width) / 18);
+        --font-size-tile: clamp(0.7rem, 2vw, 1.2rem);
         --key-width: calc(var(--container-width) * 0.07);
         --key-width-wide: calc(var(--container-width) * 0.13);
-        --font-size-tile: clamp(1rem, 3vw, 1.8rem);
         --font-size-key: calc(var(--container-width) * 0.038);
     }
 
     .wrap {
-        padding: 0.5rem;
+        padding: 0.3rem;
     }
 
     main {
         min-height: auto;
-        padding: 0.5rem 0;
+        padding: 0.3rem 0;
     }
 
     .keyboard {
-        padding: 0.5rem;
+        padding: 0.3rem;
     }
 }
 
-@media screen and (height <= 600px) {
+// Very small screens
+@media (width <= 320px) {
+    :root {
+        --grid-max-width: 98vw;
+        --tile-size: calc(var(--grid-max-width) / 19);
+        --font-size-tile: clamp(0.5rem, 1.8vw, 0.9rem);
+    }
+
+    .wrap {
+        padding: 0.2rem;
+    }
+}
+
+// Short screens - prioritize keeping keyboard visible
+@media (height <= 600px) {
+    :root {
+        --tile-size: min(calc(var(--grid-max-width) / 18), 8vh);
+        --font-size-tile: clamp(0.6rem, 2vw, 1rem);
+    }
+
     main {
         min-height: auto;
         justify-content: flex-start;
-        padding: 0.5rem 0;
+        padding: 0.3rem 0;
     }
 
     .keyboard {
-        padding: 0.5rem;
-        margin-top: 0.5rem;
+        padding: 0.3rem;
+        margin-top: 0.3rem;
     }
 }
