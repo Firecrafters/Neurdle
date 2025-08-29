@@ -14,13 +14,17 @@
             "package.json": "bun.lock",
             "*.scss": "${capture}.css, ${capture}.css.map"
         },
-        "explorer.fileNesting.expand": false
+        "explorer.fileNesting.expand": false,
+        "github-actions.workflows.pinned.workflows": [
+            ".github/workflows/deploy.yml"
+        ]
     },
     "extensions": {
         "recommendations": [
             "EditorConfig.EditorConfig",
             "ms-vscode.live-server",
-            "mrmlnc.vscode-scss"
+            "mrmlnc.vscode-scss",
+            "github.vscode-github-actions"
         ]
     }
 }
