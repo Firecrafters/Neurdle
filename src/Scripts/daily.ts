@@ -9,9 +9,7 @@ export default function generateDailyWord(): string {
     const year = date.getFullYear();
 
     let index = Math.floor(day * month * dayOfMonth * (year * 0.001));
-    while(index >= answerList.length) {
-        index -= day;
-    }
+    index = ((index % answerList.length) + answerList.length) % answerList.length;
 
     debugLog(`Answer index: ${index}`);
     debugLog(`Answer: ${answerList[index]}`);
