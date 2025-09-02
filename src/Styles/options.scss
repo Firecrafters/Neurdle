@@ -40,19 +40,25 @@
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    border-radius: 10px;
+    border-radius: 32px;
     z-index: 1000;
 
     > #popup-header {
         font-family: var(--font-normal);
-        margin: 15px 35px;
         display: flex;
         align-items: center;
         justify-content: space-between;
+        margin-top: 10px;
+        font-weight: 800;
+
+        > h1 {
+            margin-left: 35px;
+        }
 
         > #popup-close-btn {
             width: 40px;
             height: 40px;
+            margin-right: 30px;
         }
     }
 
@@ -66,27 +72,29 @@
             display: flex;
             align-items: center;
             gap: 10px;
+            padding: 10px;
 
             > .setting-switch {
                 transition: all 0.2s ease;
                 background: #101010;
                 height: 25px;
-                width: 50px;
+                width: 70px;
                 display: flex;
                 align-items: center;
                 cursor: pointer;
                 position: absolute;
-                border-radius: 5px;
+                border-radius: 8px;
 
                 &:hover { filter: brightness(0.6); }
 
                 > .switch-slider {
-                    background: #101010;
+                    background: #fff;
+                    opacity: 0.5;
                     transition: all 0.3s ease;
                     width: 25px;
                     height: 25px;
                     position: absolute;
-                    border-radius: 5px;
+                    border-radius: 8px;
                     cursor: pointer;
                 }
 
@@ -105,7 +113,6 @@
                     }
                 }
 
-
                 > input {
                     width: 50px;
                     opacity: 0;
@@ -116,19 +123,21 @@
             > .setting-label {
                 font-family: var(--font-normal);
                 font-size: 20px;
-                margin-left: 60px;
+                margin-left: 80px;
             }
         }
     }
 }
 
 .setting-btn {
+    font-family: var(--font-normal);
+    font-weight: 700;
     background: #202020;
     transition: background 0.3s ease;
     color: #fff;
-    padding: 10px 15px;
+    padding: 15px 20px;
     border: none;
-    border-radius: 5px;
+    border-radius: 15px;
     font-size: 20px;
     cursor: pointer;
 

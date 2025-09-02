@@ -1,10 +1,9 @@
+# Node modules directory
 node_modules/
-
 
 # Using bun
 package-lock.json
 yarn.lock
-
 
 # Compiled TypeScript files
 *.js
@@ -12,6 +11,18 @@ yarn.lock
 *.d.ts
 *.d.ts.map
 
+# Compiled SASS
+*.css
+*.css.map
+
+# Test workspace
+Neurdle-tests.code-workspace
+
+# Compiled app
+out/
+dist/
+
+# Misc types
 !types.d.ts
 
 # Keep eslint config
@@ -20,11 +31,8 @@ yarn.lock
 # Keep stylelint config
 !stylelint.config.js
 
+# Keep JavaScript used for Electron
+!desktop/*.js
 
-# Test workspace
-Neurdle-tests.code-workspace
-
-
-# Compiled SASS
-*.css
-*.css.map
+# Keep Electron Forge config
+!forge.config.js
