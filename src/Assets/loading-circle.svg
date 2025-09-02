@@ -2,7 +2,7 @@
     <style>
         .loading-circle {
             fill: none;
-            stroke: #FFF;
+            stroke: #000;
             stroke-width: 3;
             stroke-dasharray: 6 12;
             stroke-linecap: round;

@@ -1,0 +1,16 @@
+{
+    "name": "neurdle-desktop",
+    "version": "1.1.0",
+    "description": "Neurdle Desktop Application",
+    "main": "main.js",
+    "author": "Firecrafter28",
+    "license": "MIT",
+    "type": "module",
+    "scripts": {
+        "start": "electron .",
+        "dev": "electron . --inspect=9229"
+    },
+    "devDependencies": {
+        "electron": "^37.4.0"
+    }
+}

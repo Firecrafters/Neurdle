@@ -14,8 +14,10 @@ yarn.lock
 
 !types.d.ts
 
+
 # Keep eslint config
 !eslint.config.js
+
 
 # Keep stylelint config
 !stylelint.config.js
@@ -23,6 +25,10 @@ yarn.lock
 
 # Test workspace
 Neurdle-tests.code-workspace
+
+
+# Keep JavaScript used for Electron
+!desktop/*.js
 
 
 # Compiled SASS
