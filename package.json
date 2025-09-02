@@ -1,28 +1,42 @@
 {
-    "name": "neurdle",
-    "version": "1.1",
-    "main": "desktop/main.js",
-    "author": "Firecrafter28",
-    "scripts": {
-        "build-ts": "tsc",
-        "build-ts-prod": "tsc --sourceMap false --declaration false --declarationMap false",
-        "build-scss": "sass src/Styles",
-        "build-scss-prod": "sass src/Styles --style compressed --no-source-map",
-        "lint-ts": "eslint ./src",
-        "lint-scss": "stylelint \"src/Styles/*.scss\"",
-        "electron": "electron ."
-    },
-    "packageManager": "bun@1.2.21",
-    "devDependencies": {
-        "@typescript-eslint/eslint-plugin": "^8.41.0",
-        "@typescript-eslint/parser": "^8.41.0",
-        "bun": "^1.2.21",
-        "electron": "^37.4.0",
-        "eslint": "^9.34.0",
-        "sass": "^1.91.0",
-        "stylelint": "^16.23.1",
-        "stylelint-config-standard-scss": "^15.0.1",
-        "typescript": "^5.9.2"
-    },
-    "type": "module"
+  "name": "neurdle",
+  "version": "1.1",
+  "main": "desktop/main.js",
+  "author": "Firecrafter28",
+  "scripts": {
+    "build-ts": "tsc",
+    "build-ts-prod": "tsc --sourceMap false --declaration false --declarationMap false",
+    "build-scss": "sass src/Styles",
+    "build-scss-prod": "sass src/Styles --style compressed --no-source-map",
+    "lint-ts": "eslint ./src",
+    "lint-scss": "stylelint \"src/Styles/*.scss\"",
+    "electron": "electron .",
+    "start": "electron-forge start",
+    "package": "electron-forge package",
+    "make": "electron-forge make"
+  },
+  "packageManager": "bun@1.2.21",
+  "devDependencies": {
+    "@electron-forge/cli": "^7.8.3",
+    "@electron-forge/maker-deb": "^7.8.3",
+    "@electron-forge/maker-rpm": "^7.8.3",
+    "@electron-forge/maker-squirrel": "^7.8.3",
+    "@electron-forge/maker-zip": "^7.8.3",
+    "@electron-forge/plugin-auto-unpack-natives": "^7.8.3",
+    "@electron-forge/plugin-fuses": "^7.8.3",
+    "@electron/fuses": "^1.8.0",
+    "@typescript-eslint/eslint-plugin": "^8.41.0",
+    "@typescript-eslint/parser": "^8.41.0",
+    "bun": "^1.2.21",
+    "electron": "^37.4.0",
+    "eslint": "^9.34.0",
+    "sass": "^1.91.0",
+    "stylelint": "^16.23.1",
+    "stylelint-config-standard-scss": "^15.0.1",
+    "typescript": "^5.9.2"
+  },
+  "type": "module",
+  "dependencies": {
+    "electron-squirrel-startup": "^1.0.1"
+  }
 }

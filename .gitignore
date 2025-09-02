@@ -34,3 +34,5 @@ Neurdle-tests.code-workspace
 # Compiled SASS
 *.css
 *.css.map
+
+out/
