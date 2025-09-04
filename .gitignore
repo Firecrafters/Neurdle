@@ -19,7 +19,6 @@ yarn.lock
 Neurdle-tests.code-workspace
 
 # Compiled app
-out/
 dist/
 
 # Misc types
