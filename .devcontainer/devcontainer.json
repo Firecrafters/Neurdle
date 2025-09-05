@@ -1,0 +1,34 @@
+{
+    "name": "Neurdle Development",
+    "dockerFile": "Dockerfile",
+    "workspaceFolder": "/app",
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "EditorConfig.EditorConfig",
+                "mrmlnc.vscode-scss",
+                "github.vscode-github-actions",
+                "esbenp.prettier-vscode"
+            ],
+            "settings": {
+                "explorer.fileNesting.enabled": true,
+                "explorer.fileNesting.patterns": {
+                    "*.ts": "${capture}.js",
+                    "*.js": "${capture}.js.map, ${capture}.d.ts, ${capture}.d.ts.map",
+                    "package.json": "yarn.lock, .yarnrc.yaml",
+                    "*.scss": "${capture}.css, ${capture}.css.map"
+                },
+                "explorer.fileNesting.expand": false,
+                "[html][sass][typescript]": {
+                    "editor.defaultFormatter": "esbenp.prettier-vscode"
+                }
+            }
+        }
+    },
+    "forwardPorts": [3000],
+    "mounts": [
+        "source=${localWorkspaceFolder},target=/app,type=bind,consistency=cached"
+    ],
+    "postCreateCommand": "yarn install",
+    "remoteUser": "node"
+}

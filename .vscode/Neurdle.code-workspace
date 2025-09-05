@@ -15,7 +15,7 @@
         "explorer.fileNesting.patterns": {
             "*.ts": "${capture}.js",
             "*.js": "${capture}.js.map, ${capture}.d.ts, ${capture}.d.ts.map",
-            "package.json": "bun.lock",
+            "package.json": "yarn.lock, .yarnrc.yaml",
             "*.scss": "${capture}.css, ${capture}.css.map"
         },
         "explorer.fileNesting.expand": false,
