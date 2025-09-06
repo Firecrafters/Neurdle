@@ -21,6 +21,9 @@ Neurdle-tests.code-workspace
 # Compiled app
 dist/
 
+# Ignore logs
+logs/
+
 # Misc types
 !types.d.ts
 

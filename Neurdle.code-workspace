@@ -30,7 +30,8 @@
             "EditorConfig.EditorConfig",
             "mrmlnc.vscode-scss",
             "github.vscode-github-actions",
-            "esbenp.prettier-vscode"
+            "esbenp.prettier-vscode",
+            "dbaeumer.vscode-eslint"
         ]
     },
     "launch": {

@@ -14,7 +14,8 @@
     "lint-scss": "stylelint \"src/Styles/*.scss\"",
     "electron": "electron .",
     "app:dir": "electron-builder --dir",
-    "app:dist": "electron-builder"
+    "app:dist": "electron-builder",
+    "serve": "./serve.sh"
   },
   "packageManager": "yarn@1.22.22",
   "devDependencies": {
