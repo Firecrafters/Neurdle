@@ -9,6 +9,7 @@
     "containerUser": "node",
     "remoteUser": "node",
     "updateRemoteUserUID": true,
+    "runArgs": ["--name", "neurdle"],
     "customizations": {
         "vscode": {
             "extensions": [
