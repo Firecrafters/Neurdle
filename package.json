@@ -2,7 +2,6 @@
   "name": "neurdle",
   "version": "1.5.1",
   "description": "A Neuro-themed wordle game",
-  "main": "desktop/main.js",
   "author": "Firecrafter28",
   "license": "MIT",
   "scripts": {
@@ -12,17 +11,12 @@
     "build-scss-prod": "sass src/Styles --style compressed --no-source-map",
     "lint-ts": "eslint ./src",
     "lint-scss": "stylelint \"src/Styles/*.scss\"",
-    "electron": "electron .",
-    "app:dir": "electron-builder --dir",
-    "app:dist": "electron-builder",
     "serve": "./serve.sh"
   },
   "packageManager": "yarn@1.22.22",
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^8.41.0",
     "@typescript-eslint/parser": "^8.41.0",
-    "electron": "^37.4.0",
-    "electron-builder": "^26.0.12",
     "eslint": "^9.34.0",
     "postcss": "^8.4.29",
     "sass": "^1.91.0",
@@ -31,11 +25,5 @@
     "typescript": "^5.9.2",
     "yarn": "^1.22.22"
   },
-  "type": "module",
-  "build": {
-    "appId": "com.firecraft.neurdle",
-    "mac": {
-      "category": "public.app-category.games"
-    }
-  }
+  "type": "module"
 }

@@ -7,20 +7,6 @@ export interface BeforeInstallPromptEvent extends Event {
   prompt(): Promise<void>;
 }
 
-export interface ElectronAPI {
-  isDesktop: boolean;
-  platform: string;
-  allowAnalytics: boolean;
-  onMenuAction: (callback: (event: Event, action: string) => void) => void;
-  removeAllListeners: (channel: string) => void;
-}
-
-declare global {
-  interface Window {
-    api?: ElectronAPI;
-  }
-}
-
 export interface State {
     rows: string[][],
     row: number;

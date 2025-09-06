@@ -1,6 +1,10 @@
-FROM node:22-alpine
+FROM node:22-bullseye
 
-RUN apk add git sudo
+# Install necessary packages for development
+RUN apt-get update && apt-get install -y \
+    git \
+    sudo \
+    && rm -rf /var/lib/apt/lists/*
 
 # Add node user to sudoers for container setup
 RUN echo "node ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
@@ -14,7 +18,7 @@ RUN chown -R node:node /workspace
 # Create the home directory if it doesn't exist and set proper ownership
 RUN mkdir -p /home/node && chown -R node:node /home/node
 
-# Create .vscode-server directory with proper permissions for Alpine Linux
+# Create .vscode-server directory with proper permissions
 RUN mkdir -p /home/node/.vscode-server/bin && \
     chown -R node:node /home/node/.vscode-server
 

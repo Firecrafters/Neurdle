@@ -33,6 +33,3 @@ logs/
 # Keep stylelint config
 !stylelint.config.js
 
-# Keep JavaScript used for Electron
-!desktop/*.js
-

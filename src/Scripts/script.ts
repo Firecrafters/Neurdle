@@ -74,18 +74,6 @@ settingsButton.addEventListener("click", () => {
     settingsButton.disabled = true;
 });
 
-// Listen for menu actions from Electron main process
-if (window.api?.onMenuAction) {
-    window.api.onMenuAction((_event: Event, action: string) => {
-        switch (action) {
-            case 'settings':
-                settingsButton.click();
-                break;
-            // Add more cases for other menu actions as needed
-        }
-    });
-}
-
 // Button to close the settings menu
 const settingsCloseButton = document.getElementById("popup-close-btn") as HTMLButtonElement;
 settingsCloseButton.addEventListener("click", () => {

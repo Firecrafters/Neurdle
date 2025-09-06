@@ -33,43 +33,5 @@
             "esbenp.prettier-vscode",
             "dbaeumer.vscode-eslint"
         ]
-    },
-    "launch": {
-        "version": "0.2.0",
-        "configurations": [
-            {
-                "name": "Electron Main",
-                "type": "node",
-                "request": "launch",
-                "cwd": "${workspaceFolder}",
-                "runtimeExecutable": "${workspaceFolder}/desktop/node_modules/.bin/electron",
-                "windows": {
-                    "runtimeExecutable": "${workspaceFolder}/desktop/node_modules/.bin/electron.exe"
-                },
-                "args": ["./desktop", "--inspect=5858"],
-                "outputCapture": "std",
-                "console": "integratedTerminal",
-                "env": {
-                    "NODE_ENV": "development",
-                    "ELECTRON_ENABLE_LOGGING": "true"
-                }
-            },
-            {
-                "name": "Electron with DevTools",
-                "type": "node",
-                "request": "launch",
-                "cwd": "${workspaceFolder}",
-                "runtimeExecutable": "${workspaceFolder}/desktop/node_modules/.bin/electron",
-                "windows": {
-                    "runtimeExecutable": "${workspaceFolder}/desktop/node_modules/.bin/electron.exe"
-                },
-                "args": ["./desktop", "--enable-logging"],
-                "outputCapture": "std",
-                "console": "integratedTerminal",
-                "env": {
-                    "NODE_ENV": "development"
-                }
-            }
-        ]
     }
 }
