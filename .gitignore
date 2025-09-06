@@ -15,12 +15,6 @@ bun.lock
 *.css
 *.css.map
 
-# Test workspace
-Neurdle-tests.code-workspace
-
-# Compiled app
-dist/
-
 # Ignore logs
 logs/
 
@@ -32,4 +26,3 @@ logs/
 
 # Keep stylelint config
 !stylelint.config.js
-
