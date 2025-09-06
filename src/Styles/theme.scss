@@ -1,13 +1,13 @@
 // Dark mode
 body, body.dark {
-    --bg: #121213;
+    --bg: #121212;
     --fg: #e5e5e5;
     --key-bg: #818384;
     --key-fg: #fff;
     --color-absent: #3a3a3c;
     --border: #3a3a3c;
     --option-bg: #3a3a3a;
-    --popup-bg: #303030;
+    --popup-bg: #30303055;
 
     * img {
         filter: invert(1) !important;
@@ -31,7 +31,7 @@ body.light {
     --color-absent: #818181;
     --border: #818181;
     --option-bg: #818181;
-    --popup-bg: #888;
+    --popup-bg: #8885;
 
     // stylelint-disable-next-line no-descending-specificity
     * img {

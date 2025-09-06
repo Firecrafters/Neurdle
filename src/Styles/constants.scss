@@ -1,9 +1,11 @@
+@import "https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap";
+
 :root {
     // Tile colors
     --color-present: #b59f3b;
     --color-correct: #538d4e;
 
     // Fonts
-    --font-normal: system-ui, sans-serif;
+    --font-normal: "Inter", system-ui, sans-serif;
     --font-monospace: ui-monospace, monospace;
 }
