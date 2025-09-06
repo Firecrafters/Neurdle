@@ -1,7 +1,14 @@
 {
     "name": "Neurdle Development",
-    "dockerFile": "Dockerfile",
-    "workspaceFolder": "/app",
+    "dockerFile": "./Dockerfile",
+    "workspaceFolder": "/workspace",
+    "workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind,consistency=cached",
+    "mounts": [
+        "source=neurdle,target=/home/node/.vscode-server/neurdle,type=volume"
+    ],
+    "containerUser": "node",
+    "remoteUser": "node",
+    "updateRemoteUserUID": true,
     "customizations": {
         "vscode": {
             "extensions": [
@@ -26,9 +33,5 @@
         }
     },
     "forwardPorts": [3000],
-    "mounts": [
-        "source=${localWorkspaceFolder},target=/app,type=bind,consistency=cached"
-    ],
-    "postCreateCommand": "yarn install",
-    "remoteUser": "node"
+    "postCreateCommand": "cd /workspace && yarn install"
 }
