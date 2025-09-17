@@ -1,5 +1,5 @@
 {
-    "name": "worker-name",
+    "name": "neurdle",
     "compatibility_date": "2025-09-17",
     "assets": {
         "directory": "./src"
