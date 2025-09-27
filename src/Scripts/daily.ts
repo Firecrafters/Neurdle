@@ -1,6 +1,18 @@
+/**
+ * @fileoverview Daily word generation system for Neurdle
+ * Generates a consistent daily word using date-based seeding algorithm
+ */
+
 import answerList from "./answers.js";
 import debugLog from "./logger.js";
 
+/**
+ * Generates the daily word for the current date.
+ * Uses a deterministic algorithm based on days since epoch to ensure
+ * all players get the same word on the same day, regardless of timezone.
+ * 
+ * @returns The daily word for today, selected from the answer list
+ */
 export default function generateDailyWord(): string {
     const date = new Date();
     const dayOfMonth = date.getDate();
@@ -16,7 +28,7 @@ export default function generateDailyWord(): string {
     // Hash function to distribute the days evenly across the answer list
     let index = daysSinceEpoch % answerList.length;
 
-    // Ensure positive index
+    // Ensure positive index (handles negative modulo results)
     index = (index + answerList.length) % answerList.length;
 
     debugLog(`Date: ${year}-${month.toString().padStart(2, '0')}-${dayOfMonth.toString().padStart(2, '0')}`);
