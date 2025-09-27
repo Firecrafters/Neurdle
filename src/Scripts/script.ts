@@ -1,3 +1,8 @@
+/**
+ * @fileoverview Main game initialization and control logic for Neurdle
+ * Sets up game modes, UI components, settings, and coordinates all game functionality
+ */
+
 import type { State, KeyboardStatus } from "./types.js";
 import { copyToClipboard } from "./finish.js";
 import SettingsPopup from "./settings.js";
@@ -10,22 +15,33 @@ import * as Config from "./config.js";
 // If the debug log is enabled give a warning
 debugLog("Debug log is enabled. Do not deploy the site without disabling it.", "warn");
 
-
-// The loading screen (visible until DOMContentLoaded)
+// Hide loading screen when DOM is ready
 const loadingScreen = document.getElementById("loading-display") as HTMLElement;
 document.addEventListener("DOMContentLoaded", () => loadingScreen.style.display = "none");
 
+/**
+ * Game mode enumeration defining the two play styles available
+ */
 const enum Mode {
+    /** Daily challenge with consistent word for all players */
     DAILY = 1,
+    /** Random word from answer list for practice */
     RANDOM = 2
 }
 
+// Parse game mode from URL parameters
 const urlMode = location.href.split("?")[1]?.split("=")[1];
 const urlModeNum = urlMode == "daily" ? Mode.DAILY :
 urlMode == "random" ? Mode.RANDOM : undefined;
 
 let mode: Mode = urlModeNum || Mode.RANDOM;
 
+/**
+ * Changes the game mode by updating the URL and reloading the page.
+ * This ensures a fresh game state with the new mode.
+ * 
+ * @param newMode - The mode string ("daily" or "random")
+ */
 function setMode(newMode: string): void {
     let newUrl = location.href;
     if (newUrl.includes("?")) {
@@ -36,6 +52,7 @@ function setMode(newMode: string): void {
     location.href = newUrl;
 }
 
+// Configure UI based on current mode
 const restartButton = document.getElementById("restart-button") as HTMLElement;
 if (mode == Mode.DAILY) restartButton.style.display = "none";
 
@@ -57,12 +74,12 @@ switch (mode) {
         break;
 }
 
-// Button to switch to a random challenge
+// Button to switch to a random challenge from finish screen
 const playRandomButton = document.getElementById("random-button") as HTMLButtonElement;
 playRandomButton.addEventListener("click", () => setMode("random"));
 if (mode == Mode.RANDOM) playRandomButton.style.display = "none";
 
-// The settings menu
+// Initialize settings popup
 const popup = document.getElementById("settings-popup") as HTMLElement;
 const settingsPopup = new SettingsPopup(popup);
 settingsPopup.close();
@@ -81,7 +98,9 @@ settingsCloseButton.addEventListener("click", () => {
     settingsButton.disabled = false;
 });
 
-// Spellcheck option in settings
+/**
+ * Spellcheck setting states for localStorage persistence
+ */
 export enum SpellcheckState {
     DISABLED = "0",
     ENABLED = "1"
@@ -103,13 +122,15 @@ spellcheckSetting.addEventListener("click", () => {
     updateSettings();
 });
 
-// Theme setting
+/**
+ * Theme options for the game interface
+ */
 enum Theme {
     DARK = "dark",
     LIGHT = "light",
 }
 
-// Get the theme from localstorage. If it is not found, set the theme to dark
+// Get the theme from localStorage. If it is not found, set the theme to dark
 let themeValue: string = localStorage.getItem("theme") || Theme.DARK;
 
 // Theme option in settings
@@ -127,7 +148,10 @@ themeSetting.addEventListener("click", () => {
     updateSettings();
 });
 
-// Update the settings options and apply the settings
+/**
+ * Updates the UI to reflect current settings values.
+ * Applies theme to document body and updates checkbox states.
+ */
 function updateSettings(): void {
     const spellcheck: boolean = (spellcheckEnabled == SpellcheckState.ENABLED);
     spellcheckSetting.checked = spellcheck;
@@ -139,6 +163,7 @@ function updateSettings(): void {
 
 updateSettings();
 
+// Generate the target word based on game mode
 let rand = Math.floor(Math.random() * answerList.length);
 let ans: string;
 
@@ -153,19 +178,21 @@ const WORD_LEN = ANSWER.length;
 
 const board: HTMLElement = document.getElementById("board") as HTMLElement;
 
-// Change the board grid dynamically
+// Configure board grid layout dynamically based on word length
 board.style.aspectRatio = `${WORD_LEN} / ${Config.MAX_ROWS}`;
 board.style.gridTemplateRows = `repeat(${Config.MAX_ROWS}, 1fr)`;
 board.style.gridTemplateColumns = `repeat(${WORD_LEN}, 1fr)`;
 
-
+// Get references to key UI elements
 const toast: HTMLElement = document.getElementById("toast") as HTMLElement;
 const finishScreen: HTMLElement = document.getElementById("finish-screen") as HTMLElement;
 const finishTitle: HTMLElement = document.getElementById("finish-title") as HTMLElement;
 const shareGrid: HTMLElement = document.getElementById("share-grid") as HTMLElement;
 const copyButton: HTMLElement = document.getElementById("copy-button") as HTMLElement;
 
-
+/**
+ * Initialize the game state with empty grid and default values
+ */
 let state: State = {
     rows: Array.from({ length: Config.MAX_ROWS }, () => Array(WORD_LEN).fill("")),
     row: 0,
@@ -177,7 +204,10 @@ let state: State = {
     keyboard: {} as Record<string, KeyboardStatus>,
 };
 
-// Function to create the game board
+/**
+ * Creates the game board DOM structure with tiles for each letter position.
+ * Each tile contains inner structure for flip animations with front and back faces.
+ */
 function buildBoard() {
     board.innerHTML = "";
     for (let r = 0; r < Config.MAX_ROWS; r++) {
@@ -199,13 +229,22 @@ function buildBoard() {
     }
 }
 
-// Function to handle key presses
+/**
+ * Internal key handler that applies current settings and delegates to keyboard module.
+ * 
+ * @param ch - The key character or command to handle
+ */
 function handleKey(ch: string): void {
     const spellcheck: boolean = (spellcheckEnabled == SpellcheckState.ENABLED);
     Keyboard.handleKey(ch, state, WORD_LEN, toast, ANSWER, shareGrid, finishTitle, finishScreen, spellcheck, mode == Mode.RANDOM);
 }
 
-// Function to handle physical keyboard input
+/**
+ * Handles physical keyboard input by converting KeyboardEvent to game input.
+ * Maps physical keys to game commands and normalizes letter input to uppercase.
+ * 
+ * @param e - The keyboard event from user input
+ */
 export function onKeydown(e: KeyboardEvent) {
     const key = e.key;
     if (key === "Enter") {
@@ -217,7 +256,11 @@ export function onKeydown(e: KeyboardEvent) {
     }
 }
 
-// Function to create the virtual keyboard
+/**
+ * Creates the virtual keyboard UI with three rows of keys.
+ * Generates buttons for each key with appropriate styling and event handlers.
+ * Includes special handling for ENTER and BACKSPACE keys.
+ */
 export function buildKeyboard() {
     const rows = [
         { el: document.getElementById("kb-row-1"), keys: "QWERTYUIOP".split("") },
@@ -239,11 +282,10 @@ export function buildKeyboard() {
     }
 }
 
-// Get physical keyboard input
+// Set up event listeners
 window.addEventListener("keydown", (e: KeyboardEvent): void  => onKeydown(e));
-// Button to copy the results
 copyButton.addEventListener("click", (): void => copyToClipboard(state, Config.MAX_ROWS, WORD_LEN, copyButton, ANSWER, mode == Mode.RANDOM));
 
-// Build the game board and keyboard
+// Initialize the game
 buildBoard();
 buildKeyboard();
